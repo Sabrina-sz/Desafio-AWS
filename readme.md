@@ -127,7 +127,7 @@ O objetivo é criar uma infraestrutura que responda dinamicamente à carga de us
 5. **Configurar o Tamanho do Grupo:**
    - **Desired capacity:** `1` (começar com 1 instância).
    - **Minimum capacity:** `1` (minimo de instância que precisa ter)
-   - **Maximum capacity:** `3` (maximo de instância que ser executada)
+   - **Maximum capacity:** `3` (maximo de instância que pode ser executada)
 
 
 **Como Verificar:** 
