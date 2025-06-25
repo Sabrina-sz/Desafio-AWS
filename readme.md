@@ -106,29 +106,43 @@ O objetivo é criar uma infraestrutura que responda dinamicamente à carga de us
    - Crie um novo security group
    - Adicione regras **Inbound**:
      - `SSH` (porta 22) do seu IP (para diagnóstico, se necessário).
+
      - `HTTP` (porta 80) **apenas do security group do seu CLB**. 
+     
+     ![instancias-sg](https://github.com/user-attachments/assets/38f1cfbe-a05c-41e0-92a9-9a55d05047e7)
 
 4. **Criar o Auto Scaling Group:**
    - **Group name:** 
-       Dê um nome para o grupo de segurança.
+       Dê um nome para o grupo de segurança.   
 
-   - **Launch Configuration:** 
+   - **Launch Template:** 
         Selecione a que você acabou de criar.
+
+     ![auto scaling group 01](https://github.com/user-attachments/assets/b954a48d-2e31-4cb8-93a4-8339aa4ca2d9)
 
    - **Network:** 
         Selecione a mesma VPC e as mesmas subnets que você usou para o CLB.
 
+     ![auto scaling group 02](https://github.com/user-attachments/assets/7963c537-4bf5-49b7-a7ca-f0b3f0bc582c)
+
    - **Load Balancing:** 
         Marque **Receive traffic from one or more load balancers** e selecione o grupo de segurança criado.
 
+
+   ![auto scaling group 03](https://github.com/user-attachments/assets/cee0359b-108d-4692-9d61-92428a3b013e)
+
    - **Health Check Type:** 
         Marque **ELB**.
+
+   ![auto scaling group 04](https://github.com/user-attachments/assets/eaa317d6-bd51-49c6-bdf2-9d59194ef60a)
+
 
 5. **Configurar o Tamanho do Grupo:**
    - **Desired capacity:** `1` (começar com 1 instância).
    - **Minimum capacity:** `1` (minimo de instância que precisa ter)
    - **Maximum capacity:** `3` (maximo de instância que pode ser executada)
 
+   ![auto scaling group 05](https://github.com/user-attachments/assets/37ee2d75-dd11-49da-a747-3f2c3a7d21c2)
 
 **Como Verificar:** 
     - Após alguns minutos, vá para **EC2 > Instances**. 
@@ -147,9 +161,11 @@ O objetivo é criar uma infraestrutura que responda dinamicamente à carga de us
 
    - Clique em **Create dynamic scaling policy**.
    - **Policy type:** Selecione `Simple scaling`.
+   
+
 
 ### ➕ Regra para Aumentar (Scale Out)
-
+![aumentar escalabilidade](https://github.com/user-attachments/assets/d83b20de-763a-4109-bfbf-85db61ad7a2a)
 - **Scaling policy name:** 
     Dê um nome á politica
 
@@ -179,6 +195,7 @@ O objetivo é criar uma infraestrutura que responda dinamicamente à carga de us
 
 
 ### ➖ Regra para Diminuir 
+![diminuir escalabilidade](https://github.com/user-attachments/assets/89cb46cc-7f65-4c99-a432-82f549259615)
 
 - Repita o processo para criar outra política.
 - **Scaling policy name:**
